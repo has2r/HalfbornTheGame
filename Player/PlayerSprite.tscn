@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player/PlayerSprite.gd" type="Script" id=1]
+[ext_resource path="res://Player/Player.png" type="Texture" id=2]
+
+
+[node name="Sprite" type="Sprite"]
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 6
+script = ExtResource( 1 )
