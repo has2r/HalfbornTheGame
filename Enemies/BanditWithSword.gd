@@ -115,4 +115,4 @@ func _on_Hurtbox_area_entered(area):
 			Utils.call_deferred("drop_item", Utils.random_choice(["Crossbow", "FireballStaff", "SimpleBow", "SimpleSword"]), position)
 			state = DEAD
 		stats.health -= area.get_parent().damage
-		#knockback = area.get_parent().knockback_vector * 150
+		knockback = area.get_parent().knockback_vector * 150

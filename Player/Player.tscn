@@ -4,7 +4,7 @@
 [ext_resource path="res://Player/PlayerSprite.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/SpriteArm.gd" type="Script" id=5]
 [ext_resource path="res://Items/Weapons/SimpleSword.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Player/DefaultArmor.tres" type="SpriteFrames" id=7]
+[ext_resource path="res://Items/Armor/DefaultArmor.tres" type="SpriteFrames" id=7]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -112,9 +112,11 @@ position = Vector2( 10, 20 )
 z_index = 1
 collision_layer = 2
 script = ExtResource( 1 )
+MAX_SPEED = 150
 
 [node name="Sword" parent="." instance=ExtResource( 6 )]
 position = Vector2( 9, 4 )
+z_index = 1
 
 [node name="SpriteArm" type="AnimatedSprite" parent="."]
 material = SubResource( 2 )

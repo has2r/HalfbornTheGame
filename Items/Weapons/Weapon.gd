@@ -28,7 +28,7 @@ var is_attacking = false
 
 	
 func _ready():
-	z_index= -1
+	z_index = 0
 	cooldownTimer = Timer.new()
 	cooldownTimer.set_one_shot(false)
 	cooldownTimer.set_wait_time(cooldown)

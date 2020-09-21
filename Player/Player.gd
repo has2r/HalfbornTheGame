@@ -26,6 +26,7 @@ onready var stateMachine = animationTree.get("parameters/playback")
 func _ready():
 	Utils.player = self
 	Stats.max_health = 5
+	Stats.max_mana = 1
 	Stats.health = Stats.max_health
 	Stats.mana = Stats.max_mana
 	Stats.connect("no_health", self, "set_dead")
@@ -63,10 +64,6 @@ func _physics_process(delta):
 				Inventory.isAttacking = true
 				weaponSprite.shoot(mousePos)
 				attack_animation()
-	if Input.is_action_just_pressed("armor_change"):
-		Utils.spawn_enemy("BanditWithSword", get_global_mouse_position())
-		if(Utils.enemies_count == 0):
-			get_tree().change_scene("res://World/World.tscn")
 	if Input.is_action_just_pressed("accessory_change"):
 		if (dead):
 			Stats.health = Stats.max_health
@@ -119,7 +116,6 @@ func attack_animation():
 		if(Inventory.faceRight):
 			$SpriteArm.frame = (rad2deg(get_local_mouse_position().angle()) + 90) / 45
 		else:
-			#print(rad2deg((get_local_mouse_position()).angle()))
 			$SpriteArm.frame = (rad2deg((get_local_mouse_position()*Vector2(-1,1)).angle() ) + 90) / 45
 		cooldownTimer.start()
 

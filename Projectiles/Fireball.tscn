@@ -5,7 +5,6 @@
 [ext_resource path="res://Dusts/FireAndAshDust.png" type="Texture" id=3]
 [ext_resource path="res://Player/light.png" type="Texture" id=4]
 
-
 [sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
 particles_anim_h_frames = 3

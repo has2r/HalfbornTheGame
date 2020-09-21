@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UI/HealthUI.gd" type="Script" id=1]
 [ext_resource path="res://UI/HP.png" type="Texture" id=2]
@@ -8,13 +8,9 @@
 [ext_resource path="res://UI/WeaponSlot.png" type="Texture" id=6]
 [ext_resource path="res://UI/WeaponSlot_UI.gd" type="Script" id=7]
 [ext_resource path="res://Items/Weapons/SimpleSword.png" type="Texture" id=8]
-
-
-
-
-
-
-
+[ext_resource path="res://UI/Armor.gd" type="Script" id=9]
+[ext_resource path="res://new_dynamicfont.tres" type="DynamicFont" id=10]
+[ext_resource path="res://UI/Slot.png" type="Texture" id=11]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -65,6 +61,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RichTextLabel" type="RichTextLabel" parent="ManaUI_full"]
+margin_left = 11.0
+margin_top = 7.0
+margin_right = 16.0
+margin_bottom = 15.0
+custom_fonts/mono_font = ExtResource( 10 )
+custom_fonts/normal_font = ExtResource( 10 )
+text = "5
+"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="WeaponSlot" type="TextureRect" parent="."]
 anchor_left = 0.684
 anchor_top = 0.622
@@ -97,6 +107,27 @@ margin_right = 16.0
 margin_bottom = 16.0
 texture = ExtResource( 8 )
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArmorSlot" type="TextureRect" parent="."]
+anchor_top = 0.622
+anchor_bottom = 0.622
+margin_top = 78.04
+margin_right = 28.0
+margin_bottom = 99.04
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Armor" type="TextureRect" parent="ArmorSlot"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 16.0
+margin_bottom = 16.0
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

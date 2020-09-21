@@ -1,6 +1,8 @@
 extends Node2D
 export(NodePath) var background
 export(NodePath) var foreground
+var explosion_effect = preload("res://Dusts/Explosion.tscn")
+var explosion_effect_1 = preload("res://Dusts/BarrelBroke.tscn")
 var grid=[] 
 var grid_ruins=[] 
 var chestSpawned = false
@@ -8,7 +10,8 @@ var box_number = 1
 
 
 func _ready():
-	
+	add_child(explosion_effect.instance())
+	add_child(explosion_effect_1.instance())
 	Utils.area_dark = false
 	Utils.enemies_count = 0
 	background = get_node(background)
@@ -233,7 +236,7 @@ func SpawnBackground():
 					gridSpace.empty_:
 						foreground.set_cell(x, y, 5)
 					gridSpace.floor_:
-						background.set_cell(x, y, 18, false, false, false, Vector2(randi()%2,randi()%2))
+						background.set_cell(x, y, 27, false, false, false, Vector2(randi()%2,randi()%2))
 					gridSpace.wall_ground:
 						foreground.set_cell(x, y, 3, false, false, false, Vector2(randi()%2,0))
 					gridSpace.wall_middle_part:

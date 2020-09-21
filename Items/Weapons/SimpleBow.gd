@@ -10,6 +10,6 @@ func _init():
 	ranged = true
 	melee = false
 	texture = "simple_bow"
-	cooldown = 0.8
+	cooldown = 0.2
 	damage = 2
 	autoattack = false
