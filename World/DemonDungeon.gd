@@ -41,7 +41,7 @@ func _ready():
 		for y in range(roomHeight):
 			grid_ruins[x].append([])
 			grid_ruins[x][y]=-1
-	Setup()
+	#Setup()
 	
 
 

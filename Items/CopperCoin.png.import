@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HP.png-0a3573990bd3e95c1e045040cd81fa47.stex"
+path="res://.import/CopperCoin.png-a16f433ca87d84c87daa79e2e5f210f1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/HP.png"
-dest_files=[ "res://.import/HP.png-0a3573990bd3e95c1e045040cd81fa47.stex" ]
+source_file="res://Items/CopperCoin.png"
+dest_files=[ "res://.import/CopperCoin.png-a16f433ca87d84c87daa79e2e5f210f1.stex" ]
 
 [params]
 

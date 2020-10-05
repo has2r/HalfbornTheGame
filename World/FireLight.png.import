@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HP_empty.png-024bfe5f1296be1447ee4ce0a4c12387.stex"
+path="res://.import/FireLight.png-d9ba4824fba42d9520faf3712996ce5e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/HP_empty.png"
-dest_files=[ "res://.import/HP_empty.png-024bfe5f1296be1447ee4ce0a4c12387.stex" ]
+source_file="res://World/FireLight.png"
+dest_files=[ "res://.import/FireLight.png-d9ba4824fba42d9520faf3712996ce5e.stex" ]
 
 [params]
 

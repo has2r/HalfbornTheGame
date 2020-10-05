@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/MainMenu.gd" type="Script" id=1]
+
+[node name="Node" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="Control" parent="CanvasLayer"]
+margin_left = -0.250351
+margin_right = 202.75
+margin_bottom = 111.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/MainMenu"]
+margin_left = 55.0
+margin_top = 20.0
+margin_right = 198.0
+margin_bottom = 40.0
+text = "PLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/MainMenu"]
+margin_left = 55.0
+margin_top = 46.3406
+margin_right = 198.0
+margin_bottom = 66.3406
+text = "EXIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}

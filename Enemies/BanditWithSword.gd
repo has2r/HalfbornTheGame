@@ -32,6 +32,7 @@ onready var animationTree = $AnimationTree
 onready var stateMachine = animationTree.get("parameters/playback")
 
 func _ready():
+	Utils.enemies_count += 1
 	state = IDLE
 	deathTimer = Timer.new()
 	deathTimer.set_one_shot(true)
@@ -112,7 +113,8 @@ func _on_Hurtbox_area_entered(area):
 		else:
 			deathTimer.start()
 			Utils.enemies_count-=1
-			Utils.call_deferred("drop_item", Utils.random_choice(["Crossbow", "FireballStaff", "SimpleBow", "SimpleSword"]), position)
+			Utils.call_deferred("drop_item", Utils.random_choice(["Crossbow", "FireballStaff", "SimpleBow", "SimpleSword"]), position, "Weapons")
+			Utils.call_deferred("drop_item", "CopperCoin", position, "", 2)
 			state = DEAD
 		stats.health -= area.get_parent().damage
 		knockback = area.get_parent().knockback_vector * 150

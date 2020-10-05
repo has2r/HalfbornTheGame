@@ -32,6 +32,7 @@ onready var animationTree = $AnimationTree
 onready var stateMachine = animationTree.get("parameters/playback")
 
 func _ready():
+	Utils.enemies_count += 1
 	state = IDLE
 	deathTimer = Timer.new()
 	deathTimer.set_one_shot(true)

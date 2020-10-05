@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mana_empty.png-b4617b2aca60e7ed54b98a9b6079e10c.stex"
+path="res://.import/SandlandTiles.png-9c01e92e7b0e822d67edf4ec0393e28f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Mana_empty.png"
-dest_files=[ "res://.import/Mana_empty.png-b4617b2aca60e7ed54b98a9b6079e10c.stex" ]
+source_file="res://World/SandlandTiles.png"
+dest_files=[ "res://.import/SandlandTiles.png-9c01e92e7b0e822d67edf4ec0393e28f.stex" ]
 
 [params]
 

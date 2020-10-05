@@ -16,6 +16,7 @@ texture = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="RigidBody2D" type="Area2D" parent="Sprite"]
+visible = false
 collision_layer = 16
 collision_mask = 4
 

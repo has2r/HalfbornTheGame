@@ -25,10 +25,6 @@ onready var stateMachine = animationTree.get("parameters/playback")
 
 func _ready():
 	Utils.player = self
-	Stats.max_health = 5
-	Stats.max_mana = 1
-	Stats.health = Stats.max_health
-	Stats.mana = Stats.max_mana
 	Stats.connect("no_health", self, "set_dead")
 	Inventory.connect("weapon_changed", self, "set_weapon")
 	
@@ -49,6 +45,7 @@ func _ready():
 	blinkTimer.set_wait_time(0.1)
 	blinkTimer.connect("timeout", self, "blink_ends")
 	add_child(blinkTimer)
+	
 
 func _physics_process(delta):
 	if(!dead):
@@ -69,7 +66,6 @@ func _physics_process(delta):
 			Stats.health = Stats.max_health
 			Stats.mana = Stats.max_mana
 			dead = false
-		
 		
 func set_weapon():
 		current_weapon_node = load("res://Items/Weapons/" + Inventory.current_weapon + ".tscn")

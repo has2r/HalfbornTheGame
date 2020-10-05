@@ -1,74 +1,98 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://UI/HealthUI.gd" type="Script" id=1]
-[ext_resource path="res://UI/HP.png" type="Texture" id=2]
-[ext_resource path="res://UI/HP_empty.png" type="Texture" id=3]
-[ext_resource path="res://UI/Mana_empty.png" type="Texture" id=4]
-[ext_resource path="res://UI/Mana.png" type="Texture" id=5]
+[ext_resource path="res://UI/zdorovye.png" type="Texture" id=2]
+[ext_resource path="res://UI/mana.png" type="Texture" id=3]
+[ext_resource path="res://Items/CopperCoin.png" type="Texture" id=4]
 [ext_resource path="res://UI/WeaponSlot.png" type="Texture" id=6]
 [ext_resource path="res://UI/WeaponSlot_UI.gd" type="Script" id=7]
 [ext_resource path="res://Items/Weapons/SimpleSword.png" type="Texture" id=8]
 [ext_resource path="res://UI/Armor.gd" type="Script" id=9]
 [ext_resource path="res://new_dynamicfont.tres" type="DynamicFont" id=10]
 [ext_resource path="res://UI/Slot.png" type="Texture" id=11]
+[ext_resource path="res://UI/Accessory.gd" type="Script" id=12]
+[ext_resource path="res://Silver.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://UI/PauseMenu.gd" type="Script" id=14]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Silver.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 19
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 19
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 19
+font_data = SubResource( 1 )
 
 [node name="Control" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 1.078
+anchor_bottom = 1.172
+margin_right = 0.039978
+margin_bottom = 0.0399933
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HeartUI_empty" type="TextureRect" parent="."]
-margin_right = 51.0
-margin_bottom = 16.0
+[node name="Violet" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 texture = ExtResource( 3 )
-stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HeartUI_full" type="TextureRect" parent="."]
-margin_right = 51.0
-margin_bottom = 16.0
+[node name="HeartTexture" type="TextureRect" parent="."]
+margin_left = 9.86388
+margin_top = 9.3026
+margin_right = 26.8639
+margin_bottom = 31.3026
 texture = ExtResource( 2 )
-expand = true
-stretch_mode = 2
+stretch_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ManaUI_empty" type="TextureRect" parent="."]
-margin_left = -1.0
-margin_top = 17.0
-margin_right = 54.0
-margin_bottom = 30.0
-texture = ExtResource( 4 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ManaUI_full" type="TextureRect" parent="."]
-margin_left = -1.0
-margin_top = 17.0
-margin_right = 54.0
-margin_bottom = 30.0
-texture = ExtResource( 5 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ManaUI_full"]
-margin_left = 11.0
-margin_top = 7.0
-margin_right = 16.0
-margin_bottom = 15.0
+[node name="HealthText" type="RichTextLabel" parent="."]
+anchor_left = 0.089
+anchor_top = 0.009
+anchor_right = 0.089
+anchor_bottom = 0.009
+margin_top = 0.101
+margin_right = 42.295
+margin_bottom = 16.101
 custom_fonts/mono_font = ExtResource( 10 )
 custom_fonts/normal_font = ExtResource( 10 )
-text = "5
+custom_colors/default_color = Color( 0.74902, 0.0627451, 0.0627451, 1 )
+custom_colors/font_color_shadow = Color( 0.25098, 0.027451, 0.027451, 1 )
+text = "120"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManaText" type="RichTextLabel" parent="."]
+anchor_left = 0.084
+anchor_top = 0.09
+anchor_right = 0.084
+anchor_bottom = 0.09
+margin_left = 0.0200005
+margin_top = 0.00999832
+margin_right = 25.02
+margin_bottom = 18.01
+custom_fonts/mono_font = ExtResource( 10 )
+custom_fonts/normal_font = SubResource( 2 )
+text = "
+
 "
 scroll_active = false
 __meta__ = {
@@ -76,14 +100,12 @@ __meta__ = {
 }
 
 [node name="WeaponSlot" type="TextureRect" parent="."]
-anchor_left = 0.684
-anchor_top = 0.622
-anchor_right = 0.684
-anchor_bottom = 0.622
-margin_left = 108.12
-margin_top = 78.04
-margin_right = 133.12
-margin_bottom = 99.04
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -25.0
+margin_top = -21.0
 texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -112,11 +134,10 @@ __meta__ = {
 }
 
 [node name="ArmorSlot" type="TextureRect" parent="."]
-anchor_top = 0.622
-anchor_bottom = 0.622
-margin_top = 78.04
-margin_right = 28.0
-margin_bottom = 99.04
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -21.0
+margin_right = 22.0
 texture = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -128,6 +149,87 @@ margin_top = 3.0
 margin_right = 16.0
 margin_bottom = 16.0
 script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AccSlot" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -42.0
+margin_right = 22.0
+margin_bottom = -21.0
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Accessory" type="TextureRect" parent="AccSlot"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 16.0
+margin_bottom = 16.0
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseMenu" type="Control" parent="."]
+visible = false
+margin_left = 0.0496826
+margin_top = 0.692387
+margin_right = 320.05
+margin_bottom = 130.692
+script = ExtResource( 14 )
+
+[node name="ResumeButton" type="Button" parent="PauseMenu"]
+margin_left = 90.0
+margin_top = 23.0
+margin_right = 184.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "RESUME"
+
+[node name="MoneyIcon" type="TextureRect" parent="."]
+anchor_left = 1.115
+anchor_right = 1.115
+margin_left = -20.1315
+margin_top = 0.218884
+margin_right = -8.1315
+margin_bottom = 10.2189
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoneyText" type="RichTextLabel" parent="MoneyIcon"]
+anchor_left = 0.5
+anchor_top = -0.162
+anchor_right = 0.5
+anchor_bottom = -0.162
+margin_left = -17.0
+margin_top = 0.620003
+margin_bottom = 14.62
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+custom_fonts/mono_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+text = "100"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextLevelButton" type="Button" parent="."]
+visible = false
+margin_left = 272.0
+margin_top = 3.0
+margin_right = 297.0
+margin_bottom = 23.0
+disabled = true
+text = "next"
 __meta__ = {
 "_edit_use_anchors_": false
 }

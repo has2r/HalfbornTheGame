@@ -10,13 +10,18 @@ var box_number = 1
 
 
 func _ready():
+	randomize()
+	if randi()%4 == 0:
+		$CanvasModulate.color = Color(0.54, 0.69, 1, 1)
+	else:
+		$CanvasModulate.color = Color(1, 1, 1, 1)
 	add_child(explosion_effect.instance())
 	add_child(explosion_effect_1.instance())
 	Utils.area_dark = false
 	Utils.enemies_count = 0
 	background = get_node(background)
 	foreground = get_node(foreground)
-	randomize()
+
 	for x in range(100):
 		grid.append([])
 		grid[x]=[]
@@ -28,6 +33,8 @@ func _ready():
 		for y in range (0, 100):
 			grid[x][y] = gridSpace.earth_grass
 	Setup(box_number)
+		
+	
 	
 class Walker: 
 	var pos: Vector2
@@ -238,7 +245,7 @@ func SpawnBackground():
 					gridSpace.floor_:
 						background.set_cell(x, y, 27, false, false, false, Vector2(randi()%2,randi()%2))
 					gridSpace.wall_ground:
-						foreground.set_cell(x, y, 3, false, false, false, Vector2(randi()%2,0))
+						background.set_cell(x, y, 26, false, false, false, Vector2(randi()%2,0))
 					gridSpace.wall_middle_part:
 						foreground.set_cell(x, y, 2, false, false, false, Vector2(randi()%3,0))
 					gridSpace.shadow:
@@ -300,6 +307,17 @@ func SpawnSingleTiles():
 			and (grid[x+2][y+1] == gridSpace.earth_ground or grid[x+2][y+1] == gridSpace.earth_grass) and randi()%25 == 0):
 				grid[x][y] = gridSpace.tree
 				
+			if (grid[x][y] == gridSpace.empty_ and grid[x-1][y] !=gridSpace.empty_):
+				if randi()%15 == 0:
+					foreground.set_cell(x-1, y, 15, false, false, false, Vector2(2,0))
+			if (grid[x][y] == gridSpace.empty_ and grid[x+1][y] !=gridSpace.empty_):
+				if randi()%15 == 0:
+					foreground.set_cell(x+1, y, 15, false, false, false, Vector2(0,0))
+			if (grid[x][y] == gridSpace.wall_middle_part and grid[x][y+1] !=gridSpace.empty_):
+				if randi()%15 == 0:
+					foreground.set_cell(x, y+1, 15, false, false, false, Vector2(1,0))
+		
+				
 	SpawnForeground()
 	
 func SpawnForeground():
@@ -329,10 +347,9 @@ func SpawnEnemies():
 		for y in range (3,96):
 			if (grid[x][y] == gridSpace.earth_ground and randi()%100 == 0):
 				Utils.spawn_enemy("BanditWithSword", background.map_to_world(Vector2(x,y)))
-				Utils.enemies_count += 1
 			if (grid[x][y] == gridSpace.floor_ and randi()%100 == 0):
-				Utils.spawn_enemy("Skeleton", background.map_to_world(Vector2(x,y)))
-				Utils.enemies_count += 1
+				#Utils.spawn_enemy("Skeleton", background.map_to_world(Vector2(x,y)))
+				pass
 
 		
 func RandomDirection():
