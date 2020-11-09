@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SkeletonCostume_Icon.png-3488ce6cde35ae8fdfb4c87630d8d574.stex"
+path="res://.import/IronArmor_sheet.png-f0b652017eeefc7c1be1b239a8c003f1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Armor/SkeletonCostume_Icon.png"
-dest_files=[ "res://.import/SkeletonCostume_Icon.png-3488ce6cde35ae8fdfb4c87630d8d574.stex" ]
+source_file="res://Items/Armor/IronArmor_sheet.png"
+dest_files=[ "res://.import/IronArmor_sheet.png-f0b652017eeefc7c1be1b239a8c003f1.stex" ]
 
 [params]
 

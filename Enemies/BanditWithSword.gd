@@ -113,8 +113,14 @@ func _on_Hurtbox_area_entered(area):
 		else:
 			deathTimer.start()
 			Utils.enemies_count-=1
-			Utils.call_deferred("drop_item", Utils.random_choice(["Crossbow", "FireballStaff", "SimpleBow", "SimpleSword"]), position, "Weapons")
-			Utils.call_deferred("drop_item", "CopperCoin", position, "", 2)
+			Utils.call_deferred("drop_item", Utils.random_choice(["BlackNecklace", "BlueNecklace", "GreenNecklace", "OrangeNecklace", "RedNecklace", "WhiteNecklace", "YellowNecklace"]), position + Vector2(-20,0), "Accessories/")
+			Utils.call_deferred("drop_ammo", "AmmoDrop", position, 10)
+			Utils.call_deferred("drop_ammo", "CopperCoin", position + Vector2(20,0), 2)
+			Utils.call_deferred("drop_item", Utils.random_choice(["IronArmor", "SkeletonCostume"]), position + Vector2(-20,20), "Armor/")
+
+			Utils.call_deferred("drop_item", Utils.random_choice(["Crossbow", "FireballStaff", "SimpleBow", "SimpleSword"]), position + Vector2(20,20), "Weapons/")
+			
+			
 			state = DEAD
 		stats.health -= area.get_parent().damage
 		knockback = area.get_parent().knockback_vector * 150

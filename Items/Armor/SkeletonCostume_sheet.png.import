@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mana.png-2873d1290fb4dbe854998598bf5dd5f9.stex"
+path="res://.import/SkeletonCostume_sheet.png-7b80002fc5fcf7ecd37d17094bf84a38.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/mana.png"
-dest_files=[ "res://.import/mana.png-2873d1290fb4dbe854998598bf5dd5f9.stex" ]
+source_file="res://Items/Armor/SkeletonCostume_sheet.png"
+dest_files=[ "res://.import/SkeletonCostume_sheet.png-7b80002fc5fcf7ecd37d17094bf84a38.stex" ]
 
 [params]
 

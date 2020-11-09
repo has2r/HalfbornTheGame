@@ -1,16 +1,16 @@
 extends TileMap
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var door_scene = preload("res://World/Door.tscn")
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func place_tile_scenes():
+	var door_tiles = get_used_cells_by_id(2)
+	
+	tiles_instancing(door_tiles, door_scene)
+	
+func tiles_instancing(tile_array, tile_scene):
+	for tile in tile_array:
+		var tile_instance = tile_scene.instance()
+		tile_instance.position = map_to_world(tile)
+		tile_instance.tile = tile
+		add_child(tile_instance)

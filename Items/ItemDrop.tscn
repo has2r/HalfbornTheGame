@@ -46,11 +46,12 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
-shader_param/aura_width = 0.3
+shader_param/aura_width = 0.5
 shader_param/aura_color = Color( 1, 1, 1, 1 )
 shader_param/time_scale1 = 0.6
 
 [node name="Item_onground" type="Area2D"]
+z_index = 1
 collision_layer = 8
 collision_mask = 2
 script = ExtResource( 2 )
@@ -63,3 +64,4 @@ shape = SubResource( 1 )
 material = SubResource( 3 )
 texture = ExtResource( 1 )
 [connection signal="area_shape_entered" from="." to="." method="_on_Item_onground_area_shape_entered"]
+[connection signal="area_shape_exited" from="." to="." method="_on_Item_onground_area_shape_exited"]

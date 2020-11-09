@@ -5,16 +5,19 @@ var isAttacking = false
 signal weapon_changed
 signal armor_changed
 signal money_changed
+signal ammo_changed
+signal accessory_changed
 
-var active_weapons = ["SimpleSword", "SimpleBow", "FireballStaff", "Crossbow", "StrangeCard"]
-var active_armor = ["DefaultArmor", "SkeletonCostume", "IronArmor"]
+var active_weapons = ["SimpleSword"]
+var active_armor = ["DefaultArmor"]
 var active_accessories = ["Glove"]
+var active_consumables = []
 var money = 0 setget money_set
+var ammo = 10 setget ammo_set
 var i = 0
 var j = 0
 var current_weapon = active_weapons[i]
 var current_armor = active_armor[j]
-var current_acc = active_accessories[j]
 
 func _input(_event):
 	if Input.is_action_just_pressed("weapon_change"):
@@ -32,3 +35,6 @@ func _input(_event):
 func money_set(value):
 	money = value
 	emit_signal("money_changed")
+func ammo_set(value):
+	ammo = value
+	emit_signal("ammo_changed")

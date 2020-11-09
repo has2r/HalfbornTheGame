@@ -6,12 +6,6 @@ var knockback_power = 0
 var knockback_vector = Vector2(0,0)
 var friendly = false
 var hostile = false
-
-func _ready():
-	if(Utils.area_dark):
-		var light_node = Light2D.new()
-		light_node.texture = load("res://Player/light.png")
-		add_child(light_node)
 		
 func _physics_process(_delta):
 	knockback_vector.x = knockback_power * sign(linear_velocity.x)

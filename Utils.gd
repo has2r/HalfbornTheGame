@@ -1,10 +1,11 @@
 extends Node2D
 var droppedItem = preload("res://Items/ItemDrop.tscn")
+var droppedAmmo = preload("res://Items/AmmoDrop.tscn")
 
 var player setget ,_get_player
 var enemies_count
 var area_dark = false
-var area_number = Vector2(1,1)
+var area_number = [1,1]
 
 func _get_player():
 	return player if is_instance_valid(player) else null
@@ -14,10 +15,19 @@ func random_choice(array):
 	
 func drop_item(item_name, item_pos, item_type, quantity = 1):
 	var drop = droppedItem.instance()
-	var sprite = load("res://Items/" + item_type + "/" + item_name + ".png")
+	var sprite = load("res://Items/" + item_type + item_name + ".png")
 	drop.item_id = item_name
 	drop.quantity = quantity
 	drop.item_type = item_type
+	drop.get_node("Sprite").set_texture(sprite)
+	drop.global_position = item_pos
+	get_tree().get_root().call_deferred("add_child", drop)
+	
+func drop_ammo(item_name, item_pos, quantity = 1):
+	var drop = droppedAmmo.instance()
+	var sprite = load("res://Items/" + item_name + ".png")
+	drop.item_id = item_name
+	drop.quantity = quantity
 	drop.get_node("Sprite").set_texture(sprite)
 	drop.global_position = item_pos
 	get_tree().get_root().call_deferred("add_child", drop)

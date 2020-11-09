@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://UI/HealthUI.gd" type="Script" id=1]
 [ext_resource path="res://UI/zdorovye.png" type="Texture" id=2]
-[ext_resource path="res://UI/mana.png" type="Texture" id=3]
+[ext_resource path="res://UI/DemonEnergy.png" type="Texture" id=3]
 [ext_resource path="res://Items/CopperCoin.png" type="Texture" id=4]
+[ext_resource path="res://UI/mana2.png" type="Texture" id=5]
 [ext_resource path="res://UI/WeaponSlot.png" type="Texture" id=6]
 [ext_resource path="res://UI/WeaponSlot_UI.gd" type="Script" id=7]
 [ext_resource path="res://Items/Weapons/SimpleSword.png" type="Texture" id=8]
@@ -13,87 +14,177 @@
 [ext_resource path="res://UI/Accessory.gd" type="Script" id=12]
 [ext_resource path="res://Silver.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://UI/PauseMenu.gd" type="Script" id=14]
+[ext_resource path="res://UI/ammo2.png" type="Texture" id=15]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Silver.ttf"
 
 [sub_resource type="DynamicFont" id=2]
 size = 19
+outline_size = 1
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 20
-font_data = ExtResource( 13 )
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://Silver.ttf"
 
 [sub_resource type="DynamicFont" id=4]
 size = 19
-font_data = SubResource( 1 )
+outline_size = 1
+font_data = SubResource( 3 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 19
+outline_size = 1
 font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 20
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://Silver.ttf"
+
+[sub_resource type="DynamicFont" id=8]
+size = 19
+outline_size = 1
+font_data = SubResource( 7 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.078
 anchor_bottom = 1.172
-margin_right = 0.039978
+margin_left = 0.157784
+margin_right = 0.197754
 margin_bottom = 0.0399933
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Violet" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 3 )
+[node name="Mana" type="TextureProgress" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -8.92542
+margin_top = 12.2908
+margin_right = 11.0746
+margin_bottom = 32.2908
+value = 100.0
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 5 )
+fill_mode = 3
+tint_under = Color( 0.258824, 0.258824, 0.2, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HeartTexture" type="TextureRect" parent="."]
-margin_left = 9.86388
-margin_top = 9.3026
-margin_right = 26.8639
-margin_bottom = 31.3026
-texture = ExtResource( 2 )
-stretch_mode = 3
+[node name="ManaText" type="RichTextLabel" parent="Mana"]
+anchor_left = 1.0
+anchor_top = -0.18
+anchor_right = 1.0
+anchor_bottom = -0.18
+margin_left = -28.6996
+margin_top = 7.03239
+margin_right = -1.69962
+margin_bottom = 25.0325
+rect_clip_content = false
+custom_fonts/mono_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.376471, 0.372549, 0.933333, 1 )
+text = "20"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthText" type="RichTextLabel" parent="."]
+[node name="Violet" type="TextureProgress" parent="."]
+margin_left = 0.71199
+margin_top = 7.97429
+margin_right = 40.712
+margin_bottom = 51.9743
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 3 )
+fill_mode = 3
+tint_under = Color( 0.258824, 0.258824, 0.2, 1 )
+
+[node name="DemonEnergyText" type="RichTextLabel" parent="Violet"]
 anchor_left = 0.089
-anchor_top = 0.009
+anchor_top = 0.09
 anchor_right = 0.089
-anchor_bottom = 0.009
-margin_top = 0.101
-margin_right = 42.295
-margin_bottom = 16.101
+anchor_bottom = 0.09
+margin_left = 33.755
+margin_top = 15.4067
+margin_right = 61.7551
+margin_bottom = 33.4067
+rect_clip_content = false
+custom_fonts/mono_font = ExtResource( 10 )
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.682353, 0.372549, 0.933333, 1 )
+text = "20
+
+"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeartTexture" type="TextureProgress" parent="."]
+margin_left = 11.3783
+margin_top = 17.3128
+margin_right = 28.3783
+margin_bottom = 39.3128
+value = 100.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 2 )
+fill_mode = 3
+tint_under = Color( 0.262745, 0.2, 0.2, 1 )
+
+[node name="HealthText" type="RichTextLabel" parent="HeartTexture"]
+anchor_left = 0.089
+anchor_top = 0.085
+anchor_right = 0.089
+anchor_bottom = 0.085
+margin_left = 26.0536
+margin_top = -5.00052
+margin_right = 68.3486
+margin_bottom = 10.9995
 custom_fonts/mono_font = ExtResource( 10 )
 custom_fonts/normal_font = ExtResource( 10 )
 custom_colors/default_color = Color( 0.74902, 0.0627451, 0.0627451, 1 )
-custom_colors/font_color_shadow = Color( 0.25098, 0.027451, 0.027451, 1 )
 text = "120"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ManaText" type="RichTextLabel" parent="."]
-anchor_left = 0.084
-anchor_top = 0.09
-anchor_right = 0.084
-anchor_bottom = 0.09
-margin_left = 0.0200005
-margin_top = 0.00999832
-margin_right = 25.02
-margin_bottom = 18.01
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/normal_font = SubResource( 2 )
-text = "
+[node name="Ammo" type="TextureProgress" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 5.40576
+margin_top = 7.96833
+margin_right = 19.4058
+margin_bottom = 32.9683
+value = 100.0
+texture_under = ExtResource( 15 )
+texture_progress = ExtResource( 15 )
+fill_mode = 3
+tint_under = Color( 0.258824, 0.258824, 0.2, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-"
+[node name="AmmoText" type="RichTextLabel" parent="Ammo"]
+anchor_top = -0.325
+anchor_bottom = -0.325
+margin_left = 15.0
+margin_top = 15.125
+margin_right = 31.0
+margin_bottom = 33.125
+grow_horizontal = 0
+rect_clip_content = false
+custom_fonts/mono_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.0941176, 0.513726, 0.117647, 1 )
+text = "1"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -104,8 +195,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -25.0
-margin_top = -21.0
+margin_left = 14.5198
+margin_top = -9.10938
+margin_right = 39.5198
+margin_bottom = 11.8906
 texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -136,8 +229,10 @@ __meta__ = {
 [node name="ArmorSlot" type="TextureRect" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -21.0
-margin_right = 22.0
+margin_left = 5.83982
+margin_top = -18.2454
+margin_right = 27.8398
+margin_bottom = 2.75461
 texture = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -156,9 +251,10 @@ __meta__ = {
 [node name="AccSlot" type="TextureRect" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -42.0
-margin_right = 22.0
-margin_bottom = -21.0
+margin_left = 5.50926
+margin_top = -38.8046
+margin_right = 27.5093
+margin_bottom = -17.8046
 texture = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -187,35 +283,35 @@ margin_left = 90.0
 margin_top = 23.0
 margin_right = 184.0
 margin_bottom = 43.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 text = "RESUME"
 
 [node name="MoneyIcon" type="TextureRect" parent="."]
-anchor_left = 1.115
-anchor_right = 1.115
-margin_left = -20.1315
-margin_top = 0.218884
-margin_right = -8.1315
-margin_bottom = 10.2189
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 6.3038
+margin_top = 35.8022
+margin_right = 19.3038
+margin_bottom = 47.8022
 texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MoneyText" type="RichTextLabel" parent="MoneyIcon"]
-anchor_left = 0.5
-anchor_top = -0.162
-anchor_right = 0.5
-anchor_bottom = -0.162
-margin_left = -17.0
-margin_top = 0.620003
-margin_bottom = 14.62
-grow_horizontal = 2
-grow_vertical = 2
+anchor_top = -2.958
+anchor_bottom = -2.958
+margin_left = 14.0
+margin_top = 33.496
+margin_right = 30.0
+margin_bottom = 51.496
+grow_horizontal = 0
+rect_clip_content = false
 size_flags_horizontal = 3
-custom_fonts/mono_font = SubResource( 4 )
-custom_fonts/normal_font = SubResource( 5 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
+size_flags_vertical = 3
+custom_fonts/mono_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.768627, 0.505882, 0.427451, 1 )
 text = "100"
 scroll_active = false
 __meta__ = {

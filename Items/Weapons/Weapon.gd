@@ -50,10 +50,15 @@ func _process(_delta):
 		
 func shoot(_target_position : Vector2):
 	if (magic):
-			if (Stats.mana >= mana_cost and !is_attacking):
-				Stats.mana-=mana_cost
-			else: 
-				return
+		if (Stats.mana >= mana_cost and !is_attacking):
+			Stats.mana-=mana_cost
+		else: 
+			return
+	if (ranged):
+		if (Inventory.ammo > 0 and !is_attacking):
+			Inventory.ammo-=1
+		else: 
+			return
 	if (!is_attacking):
 		is_attacking = true
 		var proj_instance = projectile.instance()

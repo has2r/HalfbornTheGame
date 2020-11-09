@@ -6,4 +6,4 @@ func _ready():
 	Inventory.connect("armor_changed", self, "set_armor")
 	
 func set_armor():
-	texture = load("res://Items/Armor/"+Inventory.current_armor+".png")
+	texture = load("res://Items/Armor/"+Inventory.current_armor+"_sheet.png")

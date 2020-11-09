@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DefaultArmor_Icon.png-4f7faea17929e4ec79e5e39b646b8250.stex"
+path="res://.import/DemonEnergy.png-4030866b5ddc47c54f95380237d9d36a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Armor/DefaultArmor_Icon.png"
-dest_files=[ "res://.import/DefaultArmor_Icon.png-4f7faea17929e4ec79e5e39b646b8250.stex" ]
+source_file="res://UI/DemonEnergy.png"
+dest_files=[ "res://.import/DemonEnergy.png-4030866b5ddc47c54f95380237d9d36a.stex" ]
 
 [params]
 

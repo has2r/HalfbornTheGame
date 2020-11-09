@@ -4,7 +4,7 @@
 [ext_resource path="res://World/FireLight.gd" type="Script" id=2]
 
 [node name="Node2D" type="Node2D"]
-z_index = -1
+z_as_relative = false
 script = ExtResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="."]
@@ -14,4 +14,3 @@ range_height = 1.0
 shadow_enabled = true
 shadow_color = Color( 0, 0, 0, 1 )
 shadow_gradient_length = 10.0
-shadow_filter = 5

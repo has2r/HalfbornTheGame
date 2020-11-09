@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 
 export var ACCELERATION = 300
-export var MAX_SPEED = 70
+export var MAX_SPEED = 90
 export var FRICTION = 200
 export var WANDER_TARGET_RANGE = 4
 export var damage = 1
@@ -84,8 +84,7 @@ func _physics_process(delta):
 			stateMachine.travel("Dead")
 			velocity = Vector2(0,0)
 
-	#if softCollision.is_colliding():
-		#velocity += softCollision.get_push_vector() * delta * 400
+
 	velocity = move_and_slide(velocity)
 
 func accelerate_towards_point(point, delta):
@@ -114,7 +113,14 @@ func _on_Hurtbox_area_entered(area):
 		else:
 			deathTimer.start()
 			Utils.enemies_count-=1
-			Utils.call_deferred("drop_item", Utils.random_choice(["Crossbow", "FireballStaff", "SimpleBow", "SimpleSword"]), position)
+			Utils.call_deferred("drop_item", Utils.random_choice(["BlackNecklace", "BlueNecklace", "GreenNecklace", "OrangeNecklace", "RedNecklace", "WhiteNecklace", "YellowNecklace"]), position + Vector2(-20,0), "Accessories/")
+			Utils.call_deferred("drop_ammo", "AmmoDrop", position, 10)
+			Utils.call_deferred("drop_ammo", "CopperCoin", position + Vector2(20,0), 2)
+			Utils.call_deferred("drop_item", Utils.random_choice(["IronArmor", "SkeletonCostume"]), position + Vector2(-20,20), "Armor/")
+
+			Utils.call_deferred("drop_item", Utils.random_choice(["Crossbow", "FireballStaff", "SimpleBow", "SimpleSword"]), position + Vector2(20,20), "Weapons/")
+			
+			
 			state = DEAD
 		stats.health -= area.get_parent().damage
-	#knockback = area.knockback_vector * 150
+		knockback = area.get_parent().knockback_vector * 150

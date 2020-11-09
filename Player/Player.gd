@@ -61,11 +61,14 @@ func _physics_process(delta):
 				Inventory.isAttacking = true
 				weaponSprite.shoot(mousePos)
 				attack_animation()
+	else:
+		visible = false
 	if Input.is_action_just_pressed("accessory_change"):
 		if (dead):
-			Stats.health = Stats.max_health
-			Stats.mana = Stats.max_mana
 			dead = false
+			visible = true
+		Stats.health = Stats.max_health
+		Stats.mana = Stats.max_mana
 		
 func set_weapon():
 		current_weapon_node = load("res://Items/Weapons/" + Inventory.current_weapon + ".tscn")

@@ -22,15 +22,15 @@ func _ready():
 	background = get_node(background)
 	foreground = get_node(foreground)
 
-	for x in range(100):
+	for x in range(140):
 		grid.append([])
 		grid[x]=[]
-		for y in range(100):
+		for y in range(140):
 			grid[x].append([])
 			grid[x][y]=0
 			
-	for x in range(0, 100):
-		for y in range (0, 100):
+	for x in range(20, 120):
+		for y in range (20, 120):
 			grid[x][y] = gridSpace.earth_grass
 	Setup(box_number)
 		
@@ -58,24 +58,24 @@ var percentToFill = 20
 func Setup(box_num):
 	match box_num:
 		1:
-			ruins_offset_x = 3
-			ruins_offset_y = randi()%3 + 3
+			ruins_offset_x = 23
+			ruins_offset_y = randi()%3 + 23
 			CreateRuins()
 		2:
-			ruins_offset_x = 36
-			ruins_offset_y = randi()%3 + 3
+			ruins_offset_x = 56
+			ruins_offset_y = randi()%3 + 23
 			CreateRuins()
 		3:
-			ruins_offset_x = 69
-			ruins_offset_y = randi()%3+ 3
+			ruins_offset_x = 89
+			ruins_offset_y = randi()%3+ 23
 			CreateRuins()
 		4:
-			ruins_offset_x = 18
-			ruins_offset_y = randi()%3 + 50
+			ruins_offset_x = 38
+			ruins_offset_y = randi()%3 + 70
 			CreateRuins()
 		5:
-			ruins_offset_x = 50
-			ruins_offset_y = randi()%3 + 50
+			ruins_offset_x = 70
+			ruins_offset_y = randi()%3 + 70
 			CreateRuins()
 		6:
 			CreateGround()
@@ -225,8 +225,8 @@ func Offset():
 	Setup(box_number)
 	
 func CreateGround():
-	for x in range (3,96):
-		for y in range (3,96):
+	for x in range (3,136):
+		for y in range (3,136):
 			if (grid[x][y] == gridSpace.earth_grass and randi()%25 == 0):
 				var rand_x = randi()%3 + 2
 				var rand_y = randi()%3 + 2
@@ -237,8 +237,8 @@ func CreateGround():
 	SpawnBackground()
 					
 func SpawnBackground():
-		for x in range (0, 100):
-			for y in range (0, 100):
+		for x in range (0, 140):
+			for y in range (0, 140):
 				match(grid[x][y]):
 					gridSpace.empty_:
 						foreground.set_cell(x, y, 5)
@@ -260,8 +260,8 @@ func SpawnBackground():
 		
 	
 func SpawnSingleTiles():
-	for x in range (3,96):
-		for y in range (3,96):
+	for x in range (3,136):
+		for y in range (3,136):
 			if (grid[x][y] == gridSpace.earth_ground and randi()%50 == 0):
 				grid[x][y] = gridSpace.barrel
 				if (grid[x+1][y] == gridSpace.earth_ground and randi()%5 == 0):
@@ -295,8 +295,8 @@ func SpawnSingleTiles():
 				else:
 					  grid[x][y] = gridSpace.chest_legendary 
 				chestSpawned = true
-	for x in range (0,90):
-		for y in range (0,90):
+	for x in range (0,130):
+		for y in range (0,130):
 			if (grid[x+1][y+3] == gridSpace.earth_ground and (grid[x][y] == gridSpace.earth_ground or grid[x][y] == gridSpace.earth_grass) 
 			and (grid[x+1][y+2] == gridSpace.earth_ground or grid[x+1][y+2] == gridSpace.earth_grass) 
 			and (grid[x+2][y+1] == gridSpace.earth_ground or grid[x+2][y+1] == gridSpace.earth_grass) and randi()%25 == 0):
@@ -307,10 +307,10 @@ func SpawnSingleTiles():
 			and (grid[x+2][y+1] == gridSpace.earth_ground or grid[x+2][y+1] == gridSpace.earth_grass) and randi()%25 == 0):
 				grid[x][y] = gridSpace.tree
 				
-			if (grid[x][y] == gridSpace.empty_ and grid[x-1][y] !=gridSpace.empty_):
+			if (grid[x][y] == gridSpace.empty_ and grid[x-1][y] !=gridSpace.empty_ and grid[x-1][y] !=gridSpace.wall_middle_part):
 				if randi()%15 == 0:
 					foreground.set_cell(x-1, y, 15, false, false, false, Vector2(2,0))
-			if (grid[x][y] == gridSpace.empty_ and grid[x+1][y] !=gridSpace.empty_):
+			if (grid[x][y] == gridSpace.empty_ and grid[x+1][y] !=gridSpace.empty_ and grid[x+1][y] !=gridSpace.wall_middle_part):
 				if randi()%15 == 0:
 					foreground.set_cell(x+1, y, 15, false, false, false, Vector2(0,0))
 			if (grid[x][y] == gridSpace.wall_middle_part and grid[x][y+1] !=gridSpace.empty_):
@@ -321,8 +321,8 @@ func SpawnSingleTiles():
 	SpawnForeground()
 	
 func SpawnForeground():
-	for x in range (0, 100):
-			for y in range (0, 100):
+	for x in range (0, 140):
+			for y in range (0, 140):
 				match(grid[x][y]):             
 					gridSpace.barrel:
 						foreground.set_cell(x, y, 8, false, false, false, Vector2(randi()%2,0))
@@ -343,13 +343,13 @@ func SpawnForeground():
 	SpawnEnemies()
 	
 func SpawnEnemies():
-	for x in range (3,96):
-		for y in range (3,96):
-			if (grid[x][y] == gridSpace.earth_ground and randi()%100 == 0):
+	pass
+	for x in range (3,136):
+		for y in range (3,136):
+			if (grid[x][y] == gridSpace.earth_ground and randi()%200 == 0):
 				Utils.spawn_enemy("BanditWithSword", background.map_to_world(Vector2(x,y)))
-			if (grid[x][y] == gridSpace.floor_ and randi()%100 == 0):
-				#Utils.spawn_enemy("Skeleton", background.map_to_world(Vector2(x,y)))
-				pass
+			if (grid[x][y] == gridSpace.floor_ and randi()%200 == 0):
+				Utils.spawn_enemy("Skeleton", background.map_to_world(Vector2(x,y)))
 
 		
 func RandomDirection():
