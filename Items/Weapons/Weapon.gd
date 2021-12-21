@@ -4,6 +4,8 @@ class_name Weapon
 
 var projectile_name = "Arrow"
 var projectile = load("res://Projectiles/" + projectile_name + ".tscn")
+var fire_dusts = load("res://Dusts/OnFireSparks.tscn")
+var poison_dusts = load("res://Dusts/OnFireSparks.tscn")
 
 onready var player = get_parent()
 var cooldownTimer
@@ -26,8 +28,11 @@ var shoot_speed = 200
 
 var is_attacking = false
 
+var poisoned
+var firing 
 	
 func _ready():
+	
 	z_index = 0
 	cooldownTimer = Timer.new()
 	cooldownTimer.set_one_shot(false)
@@ -38,11 +43,11 @@ func _process(_delta):
 	projectile = load("res://Projectiles/" + projectile_name + ".tscn")
 	show_behind_parent = true
 	if Inventory.faceRight:
-		$Sprite.scale.x = 1 
+		$Sprite.flip_h = false
 		position.x = offset_x
 		position.y = offset_y
 	else:
-		$Sprite.scale.x = -1 
+		$Sprite.flip_h = true
 		position.x = -offset_x
 		position.y = offset_y
 

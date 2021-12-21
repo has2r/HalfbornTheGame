@@ -147,8 +147,8 @@ func SpawnSingleTiles():
 			grid[x][point_y] = gridSpace.pipe
 		for y in range(min(point_3, point_4), max(point_3, point_4)):
 			grid[point_x][y] = gridSpace.pipe
-		for x in range(rooms[i].x1, rooms[i].x2-1):
-			for y in range(rooms[i].y1+3, rooms[i].y2-1):
+		for x in range(rooms[i].x1, rooms[i].x2-2):
+			for y in range(rooms[i].y1+4, rooms[i].y2-1):
 				if randi()%100 == 0 and !table_spawned:
 					grid[x][y] = gridSpace.table
 					table_spawned = true
@@ -165,7 +165,8 @@ func SpawnSingleTiles():
 	foreground.update_bitmask_region()
 	foreground.place_tile_scenes()
 	player.position = background.map_to_world(rooms[0].center)
-	Utils.spawn_enemy("MonsterBlood", Vector2(0,0))
+	Utils.enemies_count = 1
+	#Utils.spawn_enemy("MonsterBlood", Vector2(0,0))
 	
 func RandomDirection():
 	return Utils.random_choice([Vector2.DOWN, Vector2.UP, Vector2.LEFT, Vector2.RIGHT])

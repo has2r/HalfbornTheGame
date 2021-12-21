@@ -14,7 +14,8 @@ enum {
 	RUN,
 	HURT,
 	DEAD,
-	STUN
+	STUN,
+	ATTACK
 }
 
 var velocity = Vector2.ZERO
@@ -32,6 +33,7 @@ onready var animationTree = $AnimationTree
 onready var stateMachine = animationTree.get("parameters/playback")
 
 func _ready():
+	stats.connect("died", self, "on_death")
 	Utils.enemies_count += 1
 	state = IDLE
 	deathTimer = Timer.new()
@@ -69,9 +71,12 @@ func _physics_process(delta):
 			
 		RUN:
 			var player = Utils.player
-			if (player != null and (Utils.player.global_position - global_position).length() < 200):
+			if(player != null and (Utils.player.global_position - global_position).length() < 10):
+				stateMachine.travel("Attack")
+			elif (player != null and (Utils.player.global_position - global_position).length() < 200):
 				stateMachine.travel("Run")
 				accelerate_towards_point(player.global_position, delta)
+
 			else:
 				state = IDLE
 				stateMachine.travel("Idle")
@@ -107,20 +112,16 @@ func pick_random_state(state_list):
 
 
 func _on_Hurtbox_area_entered(area):
+	print('a')
 	if (area.collision_layer == 16):
 		if (stats.health - area.get_parent().damage > 0):
 			state = HURT
-		else:
-			deathTimer.start()
-			Utils.enemies_count-=1
-			Utils.call_deferred("drop_item", Utils.random_choice(["BlackNecklace", "BlueNecklace", "GreenNecklace", "OrangeNecklace", "RedNecklace", "WhiteNecklace", "YellowNecklace"]), position + Vector2(-20,0), "Accessories/")
-			Utils.call_deferred("drop_ammo", "AmmoDrop", position, 10)
-			Utils.call_deferred("drop_ammo", "CopperCoin", position + Vector2(20,0), 2)
-			Utils.call_deferred("drop_item", Utils.random_choice(["IronArmor", "SkeletonCostume"]), position + Vector2(-20,20), "Armor/")
-
-			Utils.call_deferred("drop_item", Utils.random_choice(["Crossbow", "FireballStaff", "SimpleBow", "SimpleSword"]), position + Vector2(20,20), "Weapons/")
-			
-			
-			state = DEAD
 		stats.health -= area.get_parent().damage
 		knockback = area.get_parent().knockback_vector * 150
+func on_death():
+	state = DEAD
+	deathTimer.start()
+	Utils.enemies_count-=1
+	Utils.call_deferred("drop_item", Utils.random_choice(["OrangeNecklace"]), position + Vector2(-20,0), "Accessories/")
+	Utils.call_deferred("drop_ammo", "AmmoDrop", position, 10)
+	Utils.call_deferred("drop_ammo", "CopperCoin", position + Vector2(20,0), 2)

@@ -38,3 +38,15 @@ func spawn_enemy(enemy_name, enemy_pos):
 	enemy_instance.global_position = enemy_pos
 	get_tree().get_root().get_node("World").add_child(enemy_instance)
 	
+func add_buff(buff_name, buff_target, endless = false, buff_duration = 0):
+	var buff_scene = load("res://Buffs/" + buff_name + ".tscn")
+	var buff_instance = buff_scene.instance()
+	buff_instance.endless = endless
+	buff_instance.duration = buff_duration
+	var buffs = get_tree().get_nodes_in_group("Buffs")
+	for buff in buffs:
+		if buff.name == buff_name:
+			buff.queue_free()
+	get_tree().get_root().get_node("World/"+buff_target).add_child(buff_instance)
+	
+	

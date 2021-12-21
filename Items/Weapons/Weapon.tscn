@@ -3,7 +3,6 @@
 [ext_resource path="res://Items/Weapons/Weapon.gd" type="Script" id=1]
 [ext_resource path="res://Items/Weapons/SimpleBow.png" type="Texture" id=2]
 
-
 [node name="Weapon" type="Node2D"]
 script = ExtResource( 1 )
 

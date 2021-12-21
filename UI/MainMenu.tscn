@@ -16,9 +16,9 @@ __meta__ = {
 }
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/MainMenu"]
-margin_left = 55.0
+margin_left = 56.0
 margin_top = 20.0
-margin_right = 198.0
+margin_right = 199.0
 margin_bottom = 40.0
 text = "PLAY"
 __meta__ = {
@@ -26,10 +26,10 @@ __meta__ = {
 }
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/MainMenu"]
-margin_left = 55.0
-margin_top = 46.3406
-margin_right = 198.0
-margin_bottom = 66.3406
+margin_left = 55.5226
+margin_top = 43.7895
+margin_right = 198.523
+margin_bottom = 63.7895
 text = "EXIT"
 __meta__ = {
 "_edit_use_anchors_": false

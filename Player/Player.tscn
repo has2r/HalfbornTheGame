@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Items/Weapons/DemonCommanderSword.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/PlayerSprite.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/SpriteArm.gd" type="Script" id=5]
-[ext_resource path="res://Items/Weapons/SimpleSword.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Items/Armor/DefaultArmor.tres" type="SpriteFrames" id=7]
 
 [sub_resource type="Shader" id=1]
@@ -114,10 +114,6 @@ collision_layer = 2
 script = ExtResource( 1 )
 MAX_SPEED = 150
 
-[node name="Sword" parent="." instance=ExtResource( 6 )]
-position = Vector2( 9, 4 )
-z_index = 1
-
 [node name="SpriteArm" type="AnimatedSprite" parent="."]
 material = SubResource( 2 )
 frames = ExtResource( 7 )
@@ -144,7 +140,7 @@ position = Vector2( -0.962866, 4.08753 )
 shape = SubResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 2.0
+playback_speed = -12.33
 anims/IdleRight = SubResource( 7 )
 anims/RunRight = SubResource( 8 )
 
@@ -153,6 +149,9 @@ tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 14 )
+
+[node name="Weapon" parent="." instance=ExtResource( 2 )]
+
 [connection signal="animation_finished" from="SpriteArm" to="." method="_on_SpriteArm_animation_finished"]
 [connection signal="frame_changed" from="Sprite" to="." method="_on_Sprite_frame_changed"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

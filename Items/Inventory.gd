@@ -8,8 +8,8 @@ signal money_changed
 signal ammo_changed
 signal accessory_changed
 
-var active_weapons = ["SimpleSword"]
-var active_armor = ["DefaultArmor"]
+var active_weapons = ["HorizonClaws"]
+var active_armor = ["DefaultArmor", "IronArmor"]
 var active_accessories = ["Glove"]
 var active_consumables = []
 var money = 0 setget money_set
@@ -18,6 +18,9 @@ var i = 0
 var j = 0
 var current_weapon = active_weapons[i]
 var current_armor = active_armor[j]
+
+func _ready():
+	connect("accessory_changed", self, "instance_accessory")
 
 func _input(_event):
 	if Input.is_action_just_pressed("weapon_change"):
@@ -32,6 +35,10 @@ func _input(_event):
 			j = 0
 		current_armor = active_armor[j]
 		emit_signal("armor_changed")
+func instance_accessory():
+	var acc = load("res://Items/Accessories/"+active_accessories[-1]+".tscn")
+	var instance = acc.instance()
+	Utils.player.add_child(instance)
 func money_set(value):
 	money = value
 	emit_signal("money_changed")

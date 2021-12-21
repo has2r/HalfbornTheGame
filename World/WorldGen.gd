@@ -36,6 +36,8 @@ func _ready():
 		
 	
 	
+func _process(delta):
+	Engine.set_target_fps(Engine.get_iterations_per_second())
 class Walker: 
 	var pos: Vector2
 	var dir: Vector2
@@ -343,7 +345,6 @@ func SpawnForeground():
 	SpawnEnemies()
 	
 func SpawnEnemies():
-	pass
 	for x in range (3,136):
 		for y in range (3,136):
 			if (grid[x][y] == gridSpace.earth_ground and randi()%200 == 0):

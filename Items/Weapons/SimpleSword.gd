@@ -18,3 +18,9 @@ func _process(_delta):
 
 	else:
 		$Sprite/RigidBody2D/CollisionShape2D.disabled = true
+
+
+func _on_RigidBody2D_area_entered(area):
+	if firing:
+		if (area.collision_layer==4):
+			Utils.add_buff("OnFireBuff", area.get_parent().name, false, 5)

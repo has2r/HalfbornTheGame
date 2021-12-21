@@ -215,17 +215,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Weapon2" type="TextureRect" parent="WeaponSlot"]
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 16.0
-margin_bottom = 16.0
-texture = ExtResource( 8 )
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="ArmorSlot" type="TextureRect" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0

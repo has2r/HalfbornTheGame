@@ -8,7 +8,7 @@
 radius = 4.18137
 height = 5.83226
 
-[node name="Sword" type="Node2D"]
+[node name="Weapon" type="Node2D"]
 z_as_relative = false
 script = ExtResource( 1 )
 
@@ -24,3 +24,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/RigidBody2D"]
 rotation = 0.785398
 shape = SubResource( 1 )
+
+[connection signal="area_entered" from="Sprite/RigidBody2D" to="." method="_on_RigidBody2D_area_entered"]
+[connection signal="body_shape_entered" from="Sprite/RigidBody2D" to="." method="_on_RigidBody2D_body_shape_entered"]

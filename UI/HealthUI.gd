@@ -98,7 +98,7 @@ func _input(_event):
 				else:
 
 					Utils.area_number[1] +=1
-					get_tree().change_scene("res://World/World.tscn")
+					get_tree().change_scene("res://World/Forest.tscn")
 			2:
 				if Utils.area_number[1] == 4:
 					Utils.area_number = [3,1]

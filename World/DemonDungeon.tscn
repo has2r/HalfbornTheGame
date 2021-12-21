@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Player/light.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -156,6 +156,10 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 [sub_resource type="ConvexPolygonShape2D" id=27]
 points = PoolVector2Array( 0, 0, 15, 0, 15, 14, 0, 15 )
 
+[sub_resource type="OccluderPolygon2D" id=44]
+cull_mode = 2
+polygon = PoolVector2Array( 0, 0, 14, 0, 14, 14, 0, 14 )
+
 [sub_resource type="ConvexPolygonShape2D" id=28]
 points = PoolVector2Array( 0, 0, 14, 0, 14, 14, 0, 14 )
 
@@ -231,7 +235,7 @@ points = PoolVector2Array( 0, 0, 14, 0, 14, 28, 0, 28 )
 1/autotile/icon_coordinate = Vector2( 0, 0 )
 1/autotile/tile_size = Vector2( 14, 14 )
 1/autotile/spacing = 1
-1/autotile/occluder_map = [  ]
+1/autotile/occluder_map = [ Vector2( 4, 2 ), SubResource( 44 ) ]
 1/autotile/navpoly_map = [  ]
 1/autotile/priority_map = [  ]
 1/autotile/z_index_map = [ Vector3( 0, 0, 1 ), Vector3( 0, 1, 1 ), Vector3( 1, 0, 1 ), Vector3( 1, 1, 1 ), Vector3( 2, 0, 1 ), Vector3( 2, 1, 1 ), Vector3( 3, 0, 1 ), Vector3( 3, 1, 1 ), Vector3( 4, 0, 1 ), Vector3( 4, 1, 1 ), Vector3( 5, 0, 1 ), Vector3( 5, 1, 1 ), Vector3( 5, 2, 1 ) ]
@@ -472,5 +476,4 @@ margin_bottom = 18.6113
 environment = SubResource( 43 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0.160784, 0.14902, 0.180392, 1 )

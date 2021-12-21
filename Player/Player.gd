@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 const ACCELERATION = 500
-export var MAX_SPEED = 200
+export var MAX_SPEED = 80
 const FRICTION = 500
 
 
@@ -17,11 +17,14 @@ var cooldownTimer
 var invincibilityTimer
 var blinkTimer
 
-onready var weaponSprite = $Sword
-onready var actualSprite = $Sword/Sprite
+
+
+onready var weaponSprite = $Weapon
+onready var actualSprite = $Weapon/Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var stateMachine = animationTree.get("parameters/playback")
+
 
 func _ready():
 	Utils.player = self
@@ -47,9 +50,10 @@ func _ready():
 	add_child(blinkTimer)
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
+
 	if(!dead):
-		move_state(delta)
+		move_state()
 		mousePos = get_local_mouse_position()
 		if (weaponSprite.autoattack):
 			if Input.is_action_pressed("attack"):
@@ -67,8 +71,6 @@ func _physics_process(delta):
 		if (dead):
 			dead = false
 			visible = true
-		Stats.health = Stats.max_health
-		Stats.mana = Stats.max_mana
 		
 func set_weapon():
 		current_weapon_node = load("res://Items/Weapons/" + Inventory.current_weapon + ".tscn")
@@ -79,7 +81,7 @@ func set_weapon():
 		actualSprite = weaponSprite.get_node("Sprite")
 		
 	
-func move_state(delta):
+func move_state():
 	var input_vector = Vector2.ZERO
 	var _current_anim = stateMachine.get_current_node()
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -88,10 +90,10 @@ func move_state(delta):
 	
 	if input_vector!= Vector2.ZERO:
 		stateMachine.travel("RunRight")
-		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
+		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION)
 	else:
 		stateMachine.travel("IdleRight")
-		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		actualSprite.position.x = 0
 		actualSprite.position.y = 0
 		actualSprite.rotation_degrees = 0 
@@ -145,60 +147,20 @@ func _on_Sprite_frame_changed():
 				actualSprite.position.y = -2
 		actualSprite.rotation_degrees = 0 
 	else:
-		match ($SpriteArm.frame):
-			0:
-				sprite_offset_x += 4 * faceRight_sign()
-				sprite_offset_y -= 7
-			1:
-				sprite_offset_x += -2 * faceRight_sign()
-				sprite_offset_y -= 7
-			2:
-				sprite_offset_x += -5 * faceRight_sign()
-				sprite_offset_y += 1
-			3:
-				sprite_offset_x += -2 * faceRight_sign()
-				sprite_offset_y += 8
-			4:
-				sprite_offset_x += 6 * faceRight_sign()
-				sprite_offset_y += 12
-			5:
-				sprite_offset_x += 14 * faceRight_sign()
-				sprite_offset_y += 8
-			6:
-				sprite_offset_x += 17 * faceRight_sign()
-				sprite_offset_y += 1
-			7:
-				sprite_offset_x += 13 * faceRight_sign()
-				sprite_offset_y -= 7
-		match ($Sprite.frame):
-			0:
-				$SpriteArm.position.x = 0
-				sprite_offset_x -=0
-				sprite_offset_y -=0
-			1:
-				$SpriteArm.position.x = 1 * faceRight_sign()
-				sprite_offset_x +=1 * faceRight_sign()
-			2:
-				$SpriteArm.position.x = 2 * faceRight_sign()
-				sprite_offset_x +=2 * faceRight_sign()
-				$SpriteArm.position.y = -1
-			3:
-				$SpriteArm.position.x = 1 * faceRight_sign()
-				sprite_offset_x +=1 * faceRight_sign()
-			4:
-				$SpriteArm.position.x = 0
-				$SpriteArm.position.y = -1
-			5:
-				$SpriteArm.position.x = 0
-				$SpriteArm.position.y = -2
-				
-		actualSprite.position.x = sprite_offset_x
-		actualSprite.position.y = sprite_offset_y
-		actualSprite.rotation_degrees = 0 
 		if (Inventory.faceRight):
 			actualSprite.rotation_degrees = (-45 + 45 * $SpriteArm.frame) + weaponSprite.rot_offset
 		else: 
 			actualSprite.rotation_degrees = ((-45 + 45 * $SpriteArm.frame) * -1) - weaponSprite.rot_offset
+		sprite_offset_x += cos(actualSprite.rotation-0.6) * -10 * faceRight_sign() - 5.5
+		sprite_offset_y += sin(actualSprite.rotation-0.6) * -10 * faceRight_sign() + 2
+		
+		actualSprite.position.x = sprite_offset_x
+		actualSprite.position.y = sprite_offset_y
+		#actualSprite.rotation_degrees = 0 
+		#if (Inventory.faceRight):
+			#actualSprite.rotation_degrees = (-45 + 45 * $SpriteArm.frame) + weaponSprite.rot_offset
+		#else: 
+			#actualSprite.rotation_degrees = ((-45 + 45 * $SpriteArm.frame) * -1) - weaponSprite.rot_offset
 	
 
 func _on_SpriteArm_animation_finished():

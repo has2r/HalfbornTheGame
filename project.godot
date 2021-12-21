@@ -36,19 +36,22 @@ Stats="*res://Player/Stats.tscn"
 Inventory="*res://Items/Inventory.tscn"
 Utils="*res://Utils.tscn"
 
+[debug]
+
+settings/fps/force_fps=60
+
 [display]
 
-window/size/width=320
-window/size/height=180
-window/size/test_width=1280
-window/size/test_height=720
-window/handheld/orientation="portrait"
+window/size/width=480
+window/size/height=270
+window/size/borderless=true
+window/size/fullscreen=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "smoothing" )
+enabled=PoolStringArray(  )
 
 [importer_defaults]
 
@@ -132,23 +135,20 @@ pick_up={
 
 [layer_names]
 
-2d_render/layer_1="walls"
 2d_physics/layer_1="walls"
-2d_render/layer_2="player"
 2d_physics/layer_2="player"
-2d_render/layer_3="enemies "
 2d_physics/layer_3="enemies "
-2d_render/layer_4="pickable_items"
 2d_physics/layer_4="pickable_items"
 2d_physics/layer_5="projectiles"
 
 [physics]
 
-common/physics_jitter_fix=0.0
 2d/default_gravity_vector=Vector2( 0, 0 )
 
 [rendering]
 
-quality/2d/use_pixel_snap=true
+2d/snapping/use_gpu_pixel_snap=true
 environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
+quality/2d/use_pixel_snap=true
+quality/2d/use_transform_snap=true
